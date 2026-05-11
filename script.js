@@ -14,7 +14,7 @@
    NOTE: Using local quotes bank (no API) — works everywhere!
 ══════════════════════════════════════════════ */
 
-// ── 1. DOM REFERENCES ───────────────────────────────────────────────────
+// ── 1. DOM REFERENCES ──────────────────────────────────────────────────-
 const quoteText     = document.getElementById('quoteText');
 const quoteAuthor   = document.getElementById('quoteAuthor');
 const charCounter   = document.getElementById('charCounter');
