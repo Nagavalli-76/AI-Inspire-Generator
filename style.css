@@ -287,7 +287,7 @@ body {
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: #1a1a24;           /* solid dark bg — fixes dropdown visibility */
   color: var(--text-primary);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
@@ -295,12 +295,54 @@ body {
   transition: all var(--transition);
   outline: none;
   min-width: 200px;
+  -webkit-appearance: auto;
+  appearance: auto;
 }
 
 .category-select:hover,
 .category-select:focus {
   border-color: var(--gold);
-  background: var(--bg-card-hover);
+  background: #22222e;
+  color: var(--text-primary);
+}
+
+/* ── Dropdown options — dark background fix ── */
+.category-select option {
+  background: #1a1a24;           /* dark background for each option */
+  color: #f0ece0;                /* light text */
+  padding: 0.5rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+}
+
+.category-select option:hover,
+.category-select option:focus,
+.category-select option:checked {
+  background: #d4af37;           /* gold highlight when selected */
+  color: #111;
+}
+
+/* Light theme override for select */
+[data-theme="light"] .category-select {
+  background: #ffffff;
+  color: #1a1710;
+  border-color: rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] .category-select:hover,
+[data-theme="light"] .category-select:focus {
+  background: #fff8ee;
+  border-color: var(--gold);
+}
+
+[data-theme="light"] .category-select option {
+  background: #ffffff;
+  color: #1a1710;
+}
+
+[data-theme="light"] .category-select option:checked {
+  background: #d4a017;
+  color: #fff;
 }
 
 /* ── Quote Card ── */
