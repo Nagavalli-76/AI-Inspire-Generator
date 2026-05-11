@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Inspire Generator ✨</title>
+  <meta name="description" content="Generate motivational quotes powered by AI. Your daily dose of inspiration." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       NAVBAR
+  ══════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-icon">✦</span>
+      <span class="brand-text">AI Inspire</span>
+    </div>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <a href="#favorites" class="icon-btn" title="View Favorites">
+        <i class="fa-solid fa-bookmark"></i>
+        <span id="favCount" class="badge hidden">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════
+       HERO SECTION
+  ══════════════════════════════ -->
+  <section class="hero">
+    <!-- Animated background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">✦ Daily Inspiration Engine</div>
+      <h1 class="hero-title">
+        Words that<br/>
+        <em>move you.</em>
+      </h1>
+      <p class="hero-subtitle">
+        Curated wisdom from the greatest minds — one quote at a time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       MAIN QUOTE SECTION
+  ══════════════════════════════ -->
+  <main class="main-container">
+
+    <!-- Category Selector -->
+    <div class="controls-bar">
+      <div class="category-wrap">
+        <label for="categorySelect" class="control-label">
+          <i class="fa-solid fa-filter"></i> Category
+        </label>
+        <select id="categorySelect" class="category-select">
+          <option value="">✨ All Topics</option>
+          <option value="motivational">🔥 Motivation</option>
+          <option value="success">🏆 Success</option>
+          <option value="life">🌿 Life</option>
+          <option value="technology">💻 Coding & Tech</option>
+          <option value="future">🤖 AI & Future</option>
+          <option value="education">📚 Education</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Quote Card -->
+    <div class="quote-card" id="quoteCard">
+      <!-- Gradient label -->
+      <div class="card-label">Quote of the Moment</div>
+
+      <!-- Loading Spinner (hidden by default) -->
+      <div class="loader hidden" id="loader">
+        <div class="spinner"></div>
+        <p>Fetching wisdom...</p>
+      </div>
+
+      <!-- Quote Content -->
+      <div id="quoteContent">
+        <div class="quote-marks">"</div>
+        <p class="quote-text" id="quoteText">
+          The best way to predict the future is to create it.
+        </p>
+        <div class="quote-meta">
+          <span class="quote-author" id="quoteAuthor">— Peter Drucker</span>
+          <span class="char-counter" id="charCounter">40 characters</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="quote-actions">
+        <button class="btn btn-primary" id="newQuoteBtn">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          New Quote
+        </button>
+        <button class="btn btn-ghost" id="copyBtn" title="Copy to clipboard">
+          <i class="fa-regular fa-copy"></i>
+          Copy
+        </button>
+        <button class="btn btn-ghost" id="speakBtn" title="Read aloud">
+          <i class="fa-solid fa-volume-high"></i>
+          Listen
+        </button>
+        <button class="btn btn-ghost" id="saveBtn" title="Save to favorites">
+          <i class="fa-regular fa-bookmark"></i>
+          Save
+        </button>
+        <button class="btn btn-whatsapp" id="whatsappBtn" title="Share on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          Share
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast hidden" id="toast"></div>
+
+    <!-- ══════════════════════════════
+         FAVORITES SECTION
+    ══════════════════════════════ -->
+    <section class="favorites-section" id="favorites">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-bookmark"></i> Saved Quotes
+        </h2>
+        <div class="fav-controls">
+          <!-- Search Bar -->
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search favorites..."
+              aria-label="Search saved quotes"
+            />
+          </div>
+          <button class="btn btn-danger btn-sm" id="clearAllBtn">
+            <i class="fa-solid fa-trash"></i> Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">✦</div>
+        <p>No favorites yet.<br/>Save a quote you love!</p>
+      </div>
+
+      <!-- Favorites Grid -->
+      <div class="favorites-grid" id="favoritesGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-icon">✦</span> AI Inspire Generator
+      </div>
+      <p class="footer-tagline">Built with ❤️ for dreamers, builders & thinkers.</p>
+      <div class="social-links">
+        <a href="https://github.com/Nagavalli-76" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+      <p class="footer-copy">© 2025 AI Inspire — Quotes via Quotable.io</p>
+    </div>
+  </footer>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
